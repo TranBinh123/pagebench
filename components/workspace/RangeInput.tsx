@@ -65,10 +65,13 @@ export function RangeInput() {
             setError(null);
           }}
           onChange={(e) => onChange(e.target.value)}
-          className="h-9 w-40 rounded-md border border-line bg-paper px-2.5 text-sm tabular-nums placeholder:text-subtle/70 aria-[invalid=true]:border-magenta disabled:opacity-40"
+          className="h-9 w-40 rounded-md border border-line bg-paper px-2.5 text-sm tabular-nums placeholder:text-subtle/70 focus:border-brand aria-[invalid=true]:border-sun aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-sun disabled:opacity-40"
         />
       </label>
-      <span role="status" className={error ? 'text-sm text-magenta' : 'text-sm text-subtle'}>
+      <span
+        role="status"
+        className={error ? 'rounded bg-sun px-1.5 py-0.5 text-sm font-medium text-navy' : 'text-sm text-subtle'}
+      >
         {status}
       </span>
     </div>

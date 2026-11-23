@@ -83,7 +83,7 @@ export const PageThumb = memo(function PageThumb({ page, number, selected }: Pro
       )}
     >
       <div ref={boxRef} className="flex h-44 w-full items-center justify-center">
-        <div className="relative bg-paper shadow-sheet" style={stageStyle}>
+        <div className={cn('relative bg-paper shadow-sheet', selected && 'ring-[3px] ring-sun')} style={stageStyle}>
           {thumb ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -99,7 +99,14 @@ export const PageThumb = memo(function PageThumb({ page, number, selected }: Pro
           {selected && <span className="crop-marks" aria-hidden />}
         </div>
       </div>
-      <span className={cn('text-xs tabular-nums', selected ? 'font-semibold text-magenta' : 'text-subtle')}>{number}</span>
+      <span
+        className={cn(
+          'rounded px-1.5 text-xs tabular-nums',
+          selected ? 'bg-sun font-semibold text-navy' : 'text-subtle',
+        )}
+      >
+        {number}
+      </span>
     </div>
   );
 });

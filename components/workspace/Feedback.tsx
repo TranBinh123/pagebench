@@ -28,7 +28,7 @@ export function Notices() {
         <div
           key={n.id}
           role="alert"
-          className="pointer-events-auto flex w-full items-start gap-3 rounded-md border border-magenta bg-paper p-3 text-sm shadow-lg"
+          className="pointer-events-auto flex w-full items-start gap-3 rounded-md border border-l-8 border-line border-l-sun bg-paper p-3 text-sm shadow-lg"
         >
           <p className="flex-1">{t(n.key, n.params)}</p>
           <button

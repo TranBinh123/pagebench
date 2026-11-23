@@ -3,25 +3,28 @@
 @tailwind utilities;
 
 :root {
-  --mat: 230 234 238;
-  --grid: 213 219 225;
+  --mat: 222 236 251;
+  --grid: 197 220 246;
   --paper: 255 255 255;
-  --ink: 18 22 28;
-  --subtle: 91 102 114;
-  --line: 203 210 217;
-  --magenta: 224 24 122;
-  --cyan: 10 143 184;
+  --ink: 12 27 72;
+  --subtle: 61 79 128;
+  --line: 170 202 240;
+  --brand: 98 167 234;
+  --sun: 242 234 30;
+  --navy: 12 27 72;
+  --header: 12 27 72;
+  --mark: 12 27 72;
 }
 
 .dark {
-  --mat: 20 24 29;
-  --grid: 30 36 42;
-  --paper: 34 41 48;
-  --ink: 233 237 241;
-  --subtle: 139 150 163;
-  --line: 46 55 63;
-  --magenta: 255 77 154;
-  --cyan: 63 184 222;
+  --mat: 10 22 56;
+  --grid: 18 34 84;
+  --paper: 17 33 86;
+  --ink: 241 246 255;
+  --subtle: 157 180 221;
+  --line: 35 58 120;
+  --header: 5 12 34;
+  --mark: 242 234 30;
 }
 
 @layer base {
@@ -35,7 +38,7 @@
     @apply bg-mat text-ink;
   }
   :focus-visible {
-    outline: 2px solid rgb(var(--cyan));
+    outline: 2px solid rgb(var(--brand));
     outline-offset: 2px;
   }
 }
@@ -50,11 +53,11 @@
 }
 
 .crop-marks {
-  --c: rgb(var(--magenta));
+  --c: rgb(var(--mark));
   --s: 12px;
   --t: 2px;
   position: absolute;
-  inset: -7px;
+  inset: -9px;
   pointer-events: none;
   animation: mark-in 0.14s ease-out;
   background:

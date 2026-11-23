@@ -119,7 +119,7 @@ export default function Page() {
                   onClick={() => setTab(id)}
                   className={cn(
                     'flex-1 border-b-2 py-2.5 text-sm font-medium',
-                    tab === id ? 'border-magenta text-ink' : 'border-transparent text-subtle',
+                    tab === id ? 'border-brand bg-brand/10 text-ink' : 'border-transparent text-subtle',
                   )}
                 >
                   {t(id === 'docs' ? 'tab.docs' : 'tab.pages')}
@@ -144,8 +144,8 @@ export default function Page() {
       </DndLayer>
 
       {fileDrag && (
-        <div className="pointer-events-none fixed inset-0 z-40 flex items-center justify-center bg-ink/55">
-          <div className="flex items-center gap-3 rounded-lg border-2 border-dashed border-cyan bg-paper px-8 py-6 text-lg font-semibold">
+        <div className="pointer-events-none fixed inset-0 z-40 flex items-center justify-center bg-navy/60">
+          <div className="flex items-center gap-3 rounded-lg border-2 border-dashed border-sun bg-paper px-8 py-6 text-lg font-semibold">
             <Upload className="h-6 w-6" aria-hidden />
             {t('drop.overlay')}
           </div>

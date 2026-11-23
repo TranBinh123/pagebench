@@ -22,7 +22,7 @@ import { useT } from '@/lib/i18n';
 import { useSettings } from '@/lib/store/settings';
 import { useWorkspace } from '@/lib/store/workspace';
 
-const Divider = () => <span aria-hidden className="mx-1 hidden h-6 w-px shrink-0 bg-line sm:block" />;
+const Divider = () => <span aria-hidden className="mx-1 hidden h-6 w-px shrink-0 bg-subtle/30 sm:block" />;
 const Label = ({ children }: { children: React.ReactNode }) => <span className="hidden lg:inline">{children}</span>;
 
 export function Toolbar() {
@@ -44,34 +44,37 @@ export function Toolbar() {
   const hasDocs = docCount > 0;
 
   return (
-    <header className="border-b border-line bg-paper">
-      <div className="flex items-center gap-2 px-3 py-2">
-        <h1 className="mr-2 text-lg font-bold tracking-tight">Pagebench</h1>
-        <Button size="icon" variant="ghost" title={t('toolbar.undo')} aria-label={t('toolbar.undo')} disabled={!canUndo} onClick={() => ws().undo()}>
+    <header className="border-b-2 border-brand bg-paper">
+      <div className="flex items-center gap-2 bg-header px-3 py-2 text-white">
+        <h1 className="mr-2 flex items-center gap-2 text-lg font-bold tracking-tight">
+          <span aria-hidden className="h-3 w-3 rounded-sm bg-sun" />
+          Pagebench
+        </h1>
+        <Button size="icon" variant="onDark" title={t('toolbar.undo')} aria-label={t('toolbar.undo')} disabled={!canUndo} onClick={() => ws().undo()}>
           <Undo2 className="h-4 w-4" aria-hidden />
         </Button>
-        <Button size="icon" variant="ghost" title={t('toolbar.redo')} aria-label={t('toolbar.redo')} disabled={!canRedo} onClick={() => ws().redo()}>
+        <Button size="icon" variant="onDark" title={t('toolbar.redo')} aria-label={t('toolbar.redo')} disabled={!canRedo} onClick={() => ws().redo()}>
           <Redo2 className="h-4 w-4" aria-hidden />
         </Button>
         <div className="ml-auto flex items-center gap-2">
-          <Button size="icon" variant="ghost" title={t('toolbar.lang')} aria-label={t('toolbar.lang')} className="w-10 font-semibold" onClick={() => setLang(lang === 'vi' ? 'en' : 'vi')}>
+          <Button size="icon" variant="onDark" title={t('toolbar.lang')} aria-label={t('toolbar.lang')} className="w-10 font-semibold" onClick={() => setLang(lang === 'vi' ? 'en' : 'vi')}>
             {lang === 'vi' ? 'VI' : 'EN'}
           </Button>
-          <Button size="icon" variant="ghost" title={t('toolbar.theme')} aria-label={t('toolbar.theme')} onClick={toggleTheme}>
+          <Button size="icon" variant="onDark" title={t('toolbar.theme')} aria-label={t('toolbar.theme')} onClick={toggleTheme}>
             {theme === 'dark' ? <Sun className="h-4 w-4" aria-hidden /> : <Moon className="h-4 w-4" aria-hidden />}
           </Button>
-          <Button variant="solid" title={t('toolbar.exportPdf')} aria-label={t('toolbar.exportPdf')} disabled={!hasDocs || busy} onClick={() => void exportWorkspace(false)}>
+          <Button variant="accent" title={t('toolbar.exportPdf')} aria-label={t('toolbar.exportPdf')} disabled={!hasDocs || busy} onClick={() => void exportWorkspace(false)}>
             <Download className="h-4 w-4" aria-hidden />
             <span className="hidden sm:inline">{t('toolbar.exportPdf')}</span>
           </Button>
-          <Button title={t('toolbar.exportZip')} aria-label={t('toolbar.exportZip')} disabled={!hasDocs || busy} onClick={() => void exportWorkspace(true)}>
+          <Button variant="outlineDark" title={t('toolbar.exportZip')} aria-label={t('toolbar.exportZip')} disabled={!hasDocs || busy} onClick={() => void exportWorkspace(true)}>
             <FileArchive className="h-4 w-4" aria-hidden />
             <span className="hidden md:inline">{t('toolbar.exportZip')}</span>
           </Button>
         </div>
       </div>
 
-      <div className="flex items-center gap-2 overflow-x-auto border-t border-line px-3 py-2">
+      <div className="flex items-center gap-2 overflow-x-auto bg-brand/15 px-3 py-2">
         <Button title={t('toolbar.mergeSelected')} aria-label={t('toolbar.mergeSelected')} disabled={selectedDocs < 2} onClick={() => ws().mergeSelected()}>
           <Combine className="h-4 w-4" aria-hidden />
           <Label>{t('toolbar.mergeSelected')}</Label>
@@ -92,7 +95,7 @@ export function Toolbar() {
           <Label>{t('toolbar.splitEach')}</Label>
         </Button>
         <label className="flex shrink-0 cursor-pointer items-center gap-1.5 text-sm">
-          <input type="checkbox" checked={removeOriginal} onChange={(e) => setRemoveOriginal(e.target.checked)} className="h-4 w-4 accent-magenta" />
+          <input type="checkbox" checked={removeOriginal} onChange={(e) => setRemoveOriginal(e.target.checked)} className="h-4 w-4 accent-brand" />
           {t('toolbar.removeOriginal')}
         </label>
 

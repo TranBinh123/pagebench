@@ -14,8 +14,10 @@ const config: Config = {
         ink: c('ink'),
         subtle: c('subtle'),
         line: c('line'),
-        magenta: c('magenta'),
-        cyan: c('cyan'),
+        brand: c('brand'),
+        sun: c('sun'),
+        navy: c('navy'),
+        header: c('header'),
       },
       fontFamily: {
         sans: ['"Bricolage Grotesque Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],

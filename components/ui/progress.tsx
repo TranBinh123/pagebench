@@ -11,7 +11,7 @@ export function Progress({ value }: { value: number | null }) {
       className="h-1.5 w-full overflow-hidden rounded-full bg-line"
     >
       <div
-        className={cn('h-full rounded-full bg-magenta transition-[width] duration-200', value === null && 'w-1/3 animate-indeterminate')}
+        className={cn('h-full rounded-full bg-brand transition-[width] duration-200', value === null && 'w-1/3 animate-indeterminate')}
         style={pct === undefined ? undefined : { width: `${pct}%` }}
       />
     </div>

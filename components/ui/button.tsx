@@ -8,9 +8,12 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         solid: 'bg-ink text-mat hover:bg-ink/85',
-        outline: 'border border-line bg-paper text-ink hover:bg-mat',
+        outline: 'border border-line bg-paper text-ink hover:border-brand hover:bg-brand/15',
         ghost: 'text-ink hover:bg-ink/10',
-        danger: 'border border-line bg-paper text-magenta hover:bg-magenta/10',
+        danger: 'border border-line bg-paper text-ink hover:border-sun hover:bg-sun hover:text-navy',
+        accent: 'bg-sun text-navy hover:bg-sun/85',
+        onDark: 'text-white hover:bg-white/15',
+        outlineDark: 'border border-white/40 text-white hover:bg-white/15',
       },
       size: {
         md: 'h-9 px-3',

@@ -70,7 +70,7 @@ export function DndLayer({ children }: { children: React.ReactNode }) {
     if (dragged.type === 'doc') {
       const doc = ws.documents.find((d) => d.id === dragged.docId);
       return (
-        <div className="flex items-center gap-2 rounded-md border border-ink/50 bg-paper px-3 py-2 text-sm font-medium shadow-lg">
+        <div className="flex items-center gap-2 rounded-md border border-brand bg-paper px-3 py-2 text-sm font-medium shadow-lg">
           <FileText className="h-4 w-4 text-subtle" aria-hidden />
           {doc?.name}
         </div>
@@ -88,7 +88,7 @@ export function DndLayer({ children }: { children: React.ReactNode }) {
           <div className="aspect-[3/4] bg-line/60" />
         )}
         {count > 1 && (
-          <span className="absolute -right-2 -top-2 rounded-full bg-magenta px-2 py-0.5 text-xs font-semibold text-white">
+          <span className="absolute -right-2 -top-2 rounded-full bg-sun px-2 py-0.5 text-xs font-semibold text-navy">
             {t('pages.dragCount', { n: count })}
           </span>
         )}

@@ -50,8 +50,8 @@ function DocItem({ doc, active, checked, onOpen }: ItemProps) {
       }}
       className={cn(
         'flex cursor-grab touch-manipulation items-center gap-2 rounded-md border px-2 py-2 active:cursor-grabbing',
-        active ? 'border-ink/50 bg-mat' : 'border-transparent hover:bg-mat',
-        isOver && pageDrag && 'border-cyan bg-cyan/10',
+        active ? 'border-brand bg-brand/20' : 'border-transparent hover:bg-brand/10',
+        isOver && pageDrag && 'border-sun bg-sun/30',
         isDragging && 'opacity-40',
       )}
     >
@@ -61,7 +61,7 @@ function DocItem({ doc, active, checked, onOpen }: ItemProps) {
         onChange={() => toggleDocSelected(doc.id)}
         onClick={(e) => e.stopPropagation()}
         aria-label={t('sidebar.select', { name: doc.name })}
-        className="h-4 w-4 shrink-0 cursor-pointer accent-magenta"
+        className="h-4 w-4 shrink-0 cursor-pointer accent-brand"
       />
       <FileText className="h-4 w-4 shrink-0 text-subtle" aria-hidden />
       <div className="min-w-0 flex-1">
@@ -78,7 +78,7 @@ function DocItem({ doc, active, checked, onOpen }: ItemProps) {
           e.stopPropagation();
           removeDoc(doc.id);
         }}
-        className="rounded p-1 text-subtle hover:bg-magenta/10 hover:text-magenta"
+        className="rounded p-1 text-subtle hover:bg-sun hover:text-navy"
       >
         <X className="h-4 w-4" aria-hidden />
       </button>
