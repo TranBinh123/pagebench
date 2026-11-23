@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --mat: 230 234 238;
+  --grid: 213 219 225;
+  --paper: 255 255 255;
+  --ink: 18 22 28;
+  --subtle: 91 102 114;
+  --line: 203 210 217;
+  --magenta: 224 24 122;
+  --cyan: 10 143 184;
+}
+
+.dark {
+  --mat: 20 24 29;
+  --grid: 30 36 42;
+  --paper: 34 41 48;
+  --ink: 233 237 241;
+  --subtle: 139 150 163;
+  --line: 46 55 63;
+  --magenta: 255 77 154;
+  --cyan: 63 184 222;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-mat text-ink;
+  }
+  :focus-visible {
+    outline: 2px solid rgb(var(--cyan));
+    outline-offset: 2px;
+  }
+}
+
+.mat-grid {
+  background-color: rgb(var(--mat));
+  background-image:
+    linear-gradient(rgb(var(--grid)) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--grid)) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: -1px -1px;
+}
+
+.crop-marks {
+  --c: rgb(var(--magenta));
+  --s: 12px;
+  --t: 2px;
+  position: absolute;
+  inset: -7px;
+  pointer-events: none;
+  animation: mark-in 0.14s ease-out;
+  background:
+    linear-gradient(var(--c), var(--c)) top left / var(--s) var(--t) no-repeat,
+    linear-gradient(var(--c), var(--c)) top left / var(--t) var(--s) no-repeat,
+    linear-gradient(var(--c), var(--c)) top right / var(--s) var(--t) no-repeat,
+    linear-gradient(var(--c), var(--c)) top right / var(--t) var(--s) no-repeat,
+    linear-gradient(var(--c), var(--c)) bottom left / var(--s) var(--t) no-repeat,
+    linear-gradient(var(--c), var(--c)) bottom left / var(--t) var(--s) no-repeat,
+    linear-gradient(var(--c), var(--c)) bottom right / var(--s) var(--t) no-repeat,
+    linear-gradient(var(--c), var(--c)) bottom right / var(--t) var(--s) no-repeat;
+}
+
+@keyframes mark-in {
+  from {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
