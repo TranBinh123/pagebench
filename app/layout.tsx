@@ -11,6 +11,10 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
+  // Paint under the notch / home indicator; the header pads itself with env(safe-area-inset-*).
+  viewportFit: 'cover',
+  // The header is the same navy in both color schemes, so one value matches the status bar in each.
+  themeColor: '#0c1b48',
 };
 
 const themeScript = `(function(){try{var t=localStorage.getItem('pagebench-theme');var d=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.classList.toggle('dark',d);}catch(e){}})();`;

@@ -4,6 +4,10 @@ const c = (name: string) => `rgb(var(--${name}) / <alpha-value>)`;
 
 const config: Config = {
   darkMode: 'class',
+  // Hover styles only apply on devices that can hover, so a tapped button doesn't stay "hovered".
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
   theme: {
     extend: {

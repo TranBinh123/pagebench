@@ -54,7 +54,10 @@ export function RangeInput() {
           disabled={!doc}
           placeholder={t('range.placeholder')}
           inputMode="numeric"
+          enterKeyHint="done"
           autoComplete="off"
+          autoCapitalize="off"
+          spellCheck={false}
           aria-invalid={error !== null}
           onFocus={() => {
             editing.current = true;
@@ -65,7 +68,7 @@ export function RangeInput() {
             setError(null);
           }}
           onChange={(e) => onChange(e.target.value)}
-          className="h-9 w-40 rounded-md border border-line bg-paper px-2.5 text-sm tabular-nums placeholder:text-subtle/70 focus:border-brand aria-[invalid=true]:border-sun aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-sun disabled:opacity-40"
+          className="h-9 w-40 rounded-md border border-line bg-paper px-2.5 text-base tabular-nums sm:text-sm placeholder:text-subtle/70 focus:border-brand aria-[invalid=true]:border-sun aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-sun disabled:opacity-40"
         />
       </label>
       <span

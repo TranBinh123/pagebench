@@ -3,7 +3,7 @@
 import { useDndContext } from '@dnd-kit/core';
 import { SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { FileText, Plus, X } from 'lucide-react';
+import { FileText, GripVertical, Plus, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/cn';
 import { useT } from '@/lib/i18n';
@@ -55,6 +55,7 @@ function DocItem({ doc, active, checked, onOpen }: ItemProps) {
         isDragging && 'opacity-40',
       )}
     >
+      <GripVertical className="h-4 w-4 shrink-0 text-subtle/70" aria-hidden />
       <input
         type="checkbox"
         checked={checked}
@@ -103,6 +104,7 @@ export function Sidebar({ onAdd, onOpen }: { onAdd: () => void; onOpen: () => vo
           {t('sidebar.add')}
         </Button>
       </div>
+      <p className="px-3 pb-2 text-sm leading-snug text-subtle">{t('sidebar.hint')}</p>
       <div className="min-h-0 flex-1 space-y-1 overflow-y-auto px-2 pb-2">
         <SortableContext items={documents.map((d) => `doc:${d.id}`)} strategy={verticalListSortingStrategy}>
           {documents.map((doc) => (
@@ -116,7 +118,6 @@ export function Sidebar({ onAdd, onOpen }: { onAdd: () => void; onOpen: () => vo
           ))}
         </SortableContext>
       </div>
-      <p className="border-t border-line px-3 py-2 text-xs text-subtle">{t('sidebar.hint')}</p>
     </div>
   );
 }

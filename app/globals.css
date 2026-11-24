@@ -34,8 +34,21 @@
   html.dark {
     color-scheme: dark;
   }
+  html {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+    overscroll-behavior: none;
+  }
   body {
     @apply bg-mat text-ink;
+  }
+  /* Controls are not text: no tap flash, no long-press callout, no accidental text selection. */
+  button,
+  [role='button'] {
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
   }
   :focus-visible {
     outline: 2px solid rgb(var(--brand));
