@@ -6,6 +6,7 @@ import { DndLayer } from '@/components/workspace/DndLayer';
 import { DropZone } from '@/components/workspace/DropZone';
 import { BusyBar, Notices } from '@/components/workspace/Feedback';
 import { PageGrid } from '@/components/workspace/PageGrid';
+import { PagePreview } from '@/components/workspace/PagePreview';
 import { Sidebar } from '@/components/workspace/Sidebar';
 import { Toolbar } from '@/components/workspace/Toolbar';
 import { cn } from '@/lib/cn';
@@ -23,7 +24,7 @@ const hasFiles = (e: React.DragEvent) => Array.from(e.dataTransfer.types).includ
 export default function Page() {
   const t = useT();
   const docCount = useWorkspace((s) => s.documents.length);
-  const [tab, setTab] = useState<'docs' | 'pages'>('docs');
+  const [tab, setTab] = useState<'docs' | 'pages' | 'preview'>('docs');
   const [fileDrag, setFileDrag] = useState(false);
   const depth = useRef(0);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -109,8 +110,8 @@ export default function Page() {
           <DropZone onAdd={openPicker} />
         ) : (
           <>
-            <div role="tablist" className="flex border-b border-line bg-paper md:hidden">
-              {(['docs', 'pages'] as const).map((id) => (
+            <div role="tablist" className="flex border-b border-line bg-paper lg:hidden">
+              {(['docs', 'pages', 'preview'] as const).map((id) => (
                 <button
                   key={id}
                   role="tab"
@@ -119,10 +120,15 @@ export default function Page() {
                   onClick={() => setTab(id)}
                   className={cn(
                     'flex-1 border-b-2 py-2.5 text-sm font-medium',
-                    tab === id ? 'border-brand bg-brand/10 text-ink' : 'border-transparent text-subtle',
+                    id === 'docs' && 'md:hidden',
+                    tab === id
+                      ? 'border-brand bg-brand/10 text-ink'
+                      : id === 'pages' && tab === 'docs'
+                        ? 'border-transparent text-subtle md:border-brand md:bg-brand/10 md:text-ink'
+                        : 'border-transparent text-subtle',
                   )}
                 >
-                  {t(id === 'docs' ? 'tab.docs' : 'tab.pages')}
+                  {t(id === 'docs' ? 'tab.docs' : id === 'pages' ? 'tab.pages' : 'tab.preview')}
                 </button>
               ))}
             </div>
@@ -135,9 +141,22 @@ export default function Page() {
               >
                 <Sidebar onAdd={openPicker} onOpen={() => setTab('pages')} />
               </aside>
-              <main className={cn('min-w-0 flex-1', tab === 'pages' ? 'block' : 'hidden md:block')}>
+              <main
+                className={cn(
+                  'min-w-0 flex-1',
+                  tab === 'pages' ? 'block' : tab === 'docs' ? 'hidden md:block' : 'hidden lg:block',
+                )}
+              >
                 <PageGrid />
               </main>
+              <section
+                className={cn(
+                  'min-w-0 border-l border-line bg-paper lg:w-80 lg:flex-none xl:w-96 2xl:w-[30rem]',
+                  tab === 'preview' ? 'block flex-1' : 'hidden lg:block',
+                )}
+              >
+                <PagePreview />
+              </section>
             </div>
           </>
         )}
