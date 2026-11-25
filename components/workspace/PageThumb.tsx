@@ -13,9 +13,10 @@ interface Props {
   page: PageRef;
   number: number;
   selected: boolean;
+  previewed: boolean;
 }
 
-export const PageThumb = memo(function PageThumb({ page, number, selected }: Props) {
+export const PageThumb = memo(function PageThumb({ page, number, selected, previewed }: Props) {
   const t = useT();
   const togglePage = useWorkspace((s) => s.togglePage);
   const boxRef = useRef<HTMLDivElement>(null);
@@ -42,6 +43,10 @@ export const PageThumb = memo(function PageThumb({ page, number, selected }: Pro
     io.observe(el);
     return () => io.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (previewed) boxRef.current?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  }, [previewed]);
 
   const base = thumb ?? { w: 595, h: 842 };
   const swap = page.rotation === 90 || page.rotation === 270;
@@ -83,7 +88,13 @@ export const PageThumb = memo(function PageThumb({ page, number, selected }: Pro
       )}
     >
       <div ref={boxRef} className="flex h-44 w-full items-center justify-center">
-        <div className={cn('relative bg-paper shadow-sheet', selected && 'ring-[3px] ring-sun')} style={stageStyle}>
+        <div
+          className={cn(
+            'relative bg-paper shadow-sheet',
+            selected ? 'ring-[3px] ring-sun' : previewed && 'ring-[3px] ring-brand',
+          )}
+          style={stageStyle}
+        >
           {thumb ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img

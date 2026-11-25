@@ -5,6 +5,7 @@ import { SortableContext, rectSortingStrategy } from '@dnd-kit/sortable';
 import { Button } from '@/components/ui/button';
 import { useT } from '@/lib/i18n';
 import { useWorkspace } from '@/lib/store/workspace';
+import { usePreviewPage } from '@/lib/use-preview-page';
 import { PageThumb } from './PageThumb';
 import { RangeInput } from './RangeInput';
 
@@ -15,6 +16,7 @@ export function PageGrid() {
   const selectAllPages = useWorkspace((s) => s.selectAllPages);
   const clearPageSelection = useWorkspace((s) => s.clearPageSelection);
   const selected = useMemo(() => new Set(selectedPageIds), [selectedPageIds]);
+  const { page: previewPage } = usePreviewPage();
 
   if (!doc) {
     return (
@@ -46,7 +48,13 @@ export function PageGrid() {
         <SortableContext items={doc.pages.map((p) => `page:${p.id}`)} strategy={rectSortingStrategy}>
           <div className="grid grid-cols-[repeat(auto-fill,minmax(9.5rem,1fr))] gap-3">
             {doc.pages.map((page, i) => (
-              <PageThumb key={page.id} page={page} number={i + 1} selected={selected.has(page.id)} />
+              <PageThumb
+                key={page.id}
+                page={page}
+                number={i + 1}
+                selected={selected.has(page.id)}
+                previewed={page.id === previewPage?.id}
+              />
             ))}
           </div>
         </SortableContext>
